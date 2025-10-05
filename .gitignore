@@ -1,0 +1,36 @@
+# WordPress core files (Docker handles these)
+/wordpress/
+
+# Configuration files with secrets
+wp-config.php
+.env
+
+# Database
+*.sql
+*.sql.gz
+
+# Uploads (too large for git)
+wp-content/uploads/*
+!wp-content/uploads/.gitkeep
+
+# Logs
+*.log
+wp-content/debug.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker volumes
+db_data/
+wordpress_data/
+
+# Composer/Node (if you add these later)
+vendor/
+node_modules/
