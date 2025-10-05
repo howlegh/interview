@@ -34,3 +34,9 @@ wordpress_data/
 # Composer/Node (if you add these later)
 vendor/
 node_modules/
+
+# Interview materials (keep private)
+interview-exercises/
+INTERVIEW_GUIDE.md
+LOCALWP_SETUP_GUIDE.md
+CANDIDATE_EMAIL_TEMPLATE.md
