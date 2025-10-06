@@ -7,8 +7,23 @@ echo ""
 echo "📦 Starting Docker containers..."
 docker-compose up -d
 
-echo "⏳ Waiting for WordPress to initialize (45 seconds)..."
-sleep 45
+echo "⏳ Waiting for WordPress to be ready..."
+echo "   (This may take 1-2 minutes on first run)"
+
+# Wait for WordPress to be actually ready (not just a timer)
+until docker-compose run --rm wpcli wp core is-installed 2>/dev/null; do
+    if docker-compose run --rm wpcli wp core install \
+        --url=http://localhost:8080 \
+        --title="WooCommerce Interview" \
+        --admin_user=admin \
+        --admin_password=admin \
+        --admin_email=admin@example.com 2>/dev/null; then
+        echo "✓ WordPress installed successfully"
+        break
+    fi
+    echo "   Still waiting for database..."
+    sleep 5
+done
 
 echo ""
 echo "📥 Installing WooCommerce..."
